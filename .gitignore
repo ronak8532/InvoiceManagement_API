@@ -1,0 +1,26 @@
+# Use yarn.lock instead
+package-lock.json
+yarn.lock
+
+# Dependency directories
+node_modules
+public
+
+# Environment variables
+.env
+
+# Database
+config/db.json
+
+# Optional npm cache directory
+.npm
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed

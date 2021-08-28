@@ -67,9 +67,10 @@ exports.create = async(req, res, next) => {
         const body = req.body;
         const user_exists = await User.findOne({
             $or: [
-                { email: body.email }, { phone: body.phone }
+                { email: body.email }
             ]
         });
+        console.log(user_exists);
         if (user_exists) {
             return res.status(200).json({
                 success: false,

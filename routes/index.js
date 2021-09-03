@@ -15,6 +15,5 @@ router.post("/create",
 router.get("/list", [], userController.list);
 router.get("/me", userController.me);
 router.post("/me",  [], userController.updateMe);
-router.get("/roles", userController.roles);
 
 module.exports = router;

@@ -59,6 +59,11 @@ mongoose
     })
     .then(() => {
         console.log("Connected to database!");
+        // set port, listen for requests
+        const PORT = process.env.PORT || 8080;
+        app.listen(PORT, () => {
+          console.log(`Server is running on port ${PORT}.`);
+        });
     })
     .catch(() => {
         console.log("Connection failed!");
@@ -71,8 +76,4 @@ app.get("/", (req, res) => {
 
 require('./routes/index')(app);
 
-// set port, listen for requests
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+

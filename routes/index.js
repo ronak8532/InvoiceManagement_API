@@ -23,11 +23,13 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    router.post("/login",userController.login);
+    router.post("/login", userController.login);
 
     router.post("/create", userController.create);
     
-    router.get("/list", userController.list);
+    router.get("/list",  userController.list);
+
+    router.get("/test", userController.test);
   
     app.use("/api", router);
 };

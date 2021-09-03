@@ -54,6 +54,20 @@ exports.login = async(req, res, next) => {
     }
 };
 
+exports.test = async(req, res, next) => {
+    try {
+        return res.status(200).json({
+            success: true,
+            user_id: "Worked",
+        });
+    } catch (err) {
+        return res.status(200).json({
+            success: false,
+            user_id: "Error",
+        });
+    }
+}
+
 exports.create = async(req, res, next) => {
     try {
         console.log("here",req.body);

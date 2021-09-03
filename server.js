@@ -1,54 +1,78 @@
 const http = require("http");
-const app = require("./app");
+const mongoose = require("mongoose");
+const cors = require("cors");
+//const app = require("./app");
+const express = require("express");
+const app = express();
 const config = require("./config/var");
 const {
   app: { port },
 } = config;
 const debug = require("debug")("node-angular");
+const {
+  db: { host, username, password, name },
+} = config;
+const routes = require("./routes/index");
 
-const normalizePort = (val) => {
-  var port = parseInt(val, 10);
 
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
+// const onError = (error) => {
+//   if (error.syscall !== "listen") {
+//     throw error;
+//   }
+//   const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
+//   switch (error.code) {
+//     case "EACCES":
+//       console.error(bind + " requires elevated privilages");
+//       process.exit(1);
+//       break;
+//     case "EADDRINUSE":
+//       console.error(bind + " is already in use");
+//       process.exit(1);
+//       break;
+//     default:
+//       throw error;
+//   }
+// };
 
-  if (port >= 0) {
-    // port number
-    return port;
-  }
+// const onListening = () => {
+//   const addr = server.address();
+//   const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
+//   debug("Listening on " + bind);
+// };
 
-  return false;
-};
+// app.set("port", port);
+// const server = http.createServer(app);
+// server.on("error", onError);
+// server.on("listening", onListening);
+// server.listen(port);
 
-const onError = (error) => {
-  if (error.syscall !== "listen") {
-    throw error;
-  }
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
-  switch (error.code) {
-    case "EACCES":
-      console.error(bind + " requires elevated privilages");
-      process.exit(1);
-      break;
-    case "EADDRINUSE":
-      console.error(bind + " is already in use");
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-};
+// parse requests of content-type - application/json
+app.use(express.json());  /* bodyParser.json() is deprecated */
 
-const onListening = () => {
-  const addr = server.address();
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
-  debug("Listening on " + bind);
-};
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 
-app.set("port", port);
-const server = http.createServer(app);
-server.on("error", onError);
-server.on("listening", onListening);
-server.listen(port);
+mongoose
+    .connect(`mongodb+srv://${username}:${password}@${host}/${name}`, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        console.log("Connected to database!");
+    })
+    .catch(() => {
+        console.log("Connection failed!");
+    });
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to bezkoder application." });
+});
+
+require('./routes/index')(app);
+
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});

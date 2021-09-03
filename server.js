@@ -51,7 +51,7 @@ app.use(express.json());  /* bodyParser.json() is deprecated */
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
-
+const PORT = process.env.PORT || 8080;
 mongoose
     .connect(`mongodb+srv://${username}:${password}@${host}/${name}`, {
         useNewUrlParser: true,
@@ -60,7 +60,7 @@ mongoose
     .then(() => {
         console.log("Connected to database!");
         // set port, listen for requests
-        const PORT = process.env.PORT || 8080;
+        
         app.listen(PORT, () => {
           console.log(`Server is running on port ${PORT}.`);
         });

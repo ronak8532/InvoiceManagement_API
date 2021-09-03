@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const User = require("../../../models/user");
-const config = require("../../../config/var");
-const constatnts = require("../../../common/constants");
+const User = require("../models/user");
+const config = require("../config/var");
+const constatnts = require("../common/constants");
 const crypto = require("crypto");
 const { USER_STATUS, USER_ROLES, SALT_ROUNDS, USER_ROLES_LIST } = constatnts;
 const {

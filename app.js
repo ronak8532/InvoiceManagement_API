@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 });
 app.use(handleErrors);
 app.get('/status', function (req, res) {
-    return res.status(200).json({ status: 1, type: "Running 3" });
+    return res.status(200).json({ status: 1, type: "Running 4" });
 });
 app.use("/api", routes);
 

@@ -53,7 +53,7 @@ app.use(express.json());  /* bodyParser.json() is deprecated */
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 const PORT = process.env.PORT || 8080;
 mongoose
-    .connect(`mongodb+srv://${username}:${password}@${host}/${name}`, {
+    .connect(`mongodb+srv://ronak8532:Mahadev@123@cluster0.7q6p6.mongodb.net/dashboard`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })

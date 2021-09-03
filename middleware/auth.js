@@ -11,7 +11,7 @@ module.exports = (...allowed) => {
     return function(req, res, next) {
         try {
             const token = req.headers.authorization.split(" ")[1];
-            const decodedToken = jwt.verify(token, jwt_key);
+            const decodedToken = jwt.verify(token, 'admin-dashboard');
             req.userData = {
                 username: decodedToken.username,
                 userId: decodedToken.user_id,

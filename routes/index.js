@@ -28,8 +28,8 @@ module.exports = app => {
     router.post("/create", userController.create);
     
     router.get("/list",  userController.list);
-
-    router.get("/test", userController.test);
+    
+    router.post("/update/:id", userController.update);
   
     app.use("/api", router);
 };

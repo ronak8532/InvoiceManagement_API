@@ -98,8 +98,6 @@ exports.create = async(req, res, next) => {
         user.email = body.email;
         user.phone = body.phone;
         user.password_hash = password_hash;
-        user.status = body.status;
-        user.role = body.role;
         user.created_at = new Date();
         user.updated_at = new Date();
         user = await user.save();
@@ -135,7 +133,7 @@ exports.update = async(req, res, next) => {
                 { _id: { $ne: req.params.id } },
                 {
                     $or: [
-                        { email: body.email }, { phone: body.phone }
+                        { email: body.email }
                     ]
                 }
             ]
@@ -155,11 +153,10 @@ exports.update = async(req, res, next) => {
         const password_hash = body.password ? bcrypt.hashSync(body.password, SALT_ROUNDS) : user.password_hash;
         const updated_data = {
             _id: req.params.id,
-            name: body.name,
-            email: body.email,
-            phone: body.phone,
-            city_id: body.city_id,
-            store_details: body.store_details,
+            firstName = body.firstName,
+            lastName = body.lastName,
+            email = body.email,
+            phone = body.phone,
             password_hash: password_hash,
             status: body.status,
             updated_at: new Date(),

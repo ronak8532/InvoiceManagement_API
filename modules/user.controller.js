@@ -153,10 +153,10 @@ exports.update = async(req, res, next) => {
         const password_hash = body.password ? bcrypt.hashSync(body.password, SALT_ROUNDS) : user.password_hash;
         const updated_data = {
             _id: req.params.id,
-            firstName = body.firstName,
-            lastName = body.lastName,
-            email = body.email,
-            phone = body.phone,
+            firstName : body.firstName,
+            lastName : body.lastName,
+            email : body.email,
+            phone : body.phone,
             password_hash: password_hash,
             status: body.status,
             updated_at: new Date(),

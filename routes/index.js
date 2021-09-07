@@ -30,6 +30,8 @@ module.exports = app => {
     router.get("/list",  userController.list);
     
     router.post("/update/:id", userController.update);
+
+    router.get("/me/:id", userController.me);
   
     app.use("/api", router);
 };

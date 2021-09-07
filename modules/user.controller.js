@@ -239,7 +239,7 @@ exports.findById = async(req, res, next) => {
 
 exports.me = async(req, res, next) => {
     try {
-        User.findById(req.userData.userId)
+        User.findById(req.params.id)
             .then((user) => {
                 if (user) {
                     return res.status(200).json({

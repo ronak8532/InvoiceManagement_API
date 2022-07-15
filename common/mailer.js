@@ -16,7 +16,7 @@ let transporter = nodemailer.createTransport({
 let MailGenerator = new Mailgen({
     theme: "default",
     product: {
-        name: "Laundry Hut",
+        name: "Invoice",
         link: siteLink,
     },
 });
@@ -49,14 +49,14 @@ exports.sendMail = (mailBody, to, subject, attachments) => {
 }
 
 exports.subjects = {
-    passwordResetRequest: 'Resetting your Laundry Hut password',
+    passwordResetRequest: 'Resetting your password',
     passwordResetSuccess: 'Your password has beeen reset',
     accountRegistrationSuccess: 'Your account has been created',
     orderConfirmationInvoice: 'Your order has been confirmed'
 }
 
 exports.mailBody = {
-    passwordResetSuccess: 'Your Laundry Hut password has been reset. If you did not perform this operation, please contact your manager.',
-    accountRegistrationSuccess: 'Your account has been created. Welcome to Laundry Hut',
+    passwordResetSuccess: 'Your password has been reset. If you did not perform this operation, please contact your manager.',
+    accountRegistrationSuccess: 'Your account has been created.',
     orderConfirmationInvoice: ''
 }

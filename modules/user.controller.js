@@ -43,7 +43,7 @@ exports.login = async(req, res, next) => {
         }
 
         const token = jwt.sign({ email: user.email, user_id: user._id, firstName: user.firstName, lastName: user.lastName, phone: user.phone },
-            'admin-dashboard',
+            'invoice-management',
         );
         return res.status(200).json({
             success: true,

@@ -14,38 +14,6 @@ const {
 } = config;
 const routes = require("./routes/index");
 
-
-// const onError = (error) => {
-//   if (error.syscall !== "listen") {
-//     throw error;
-//   }
-//   const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
-//   switch (error.code) {
-//     case "EACCES":
-//       console.error(bind + " requires elevated privilages");
-//       process.exit(1);
-//       break;
-//     case "EADDRINUSE":
-//       console.error(bind + " is already in use");
-//       process.exit(1);
-//       break;
-//     default:
-//       throw error;
-//   }
-// };
-
-// const onListening = () => {
-//   const addr = server.address();
-//   const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
-//   debug("Listening on " + bind);
-// };
-
-// app.set("port", port);
-// const server = http.createServer(app);
-// server.on("error", onError);
-// server.on("listening", onListening);
-// server.listen(port);
-
 // parse requests of content-type - application/json
 app.use(express.json());  /* bodyParser.json() is deprecated */
 
@@ -53,7 +21,7 @@ app.use(express.json());  /* bodyParser.json() is deprecated */
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 const PORT = process.env.PORT || 8080;
 mongoose
-    .connect(`mongodb+srv://ronak8532:Mahadev@123@cluster0.7q6p6.mongodb.net/dashboard`, {
+    .connect(`mongodb+srv://ronak3445:Mahadev123@cluster0.0bty0.mongodb.net/InvoiceManagement`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -88,7 +56,7 @@ mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to invoice application." });
 });
 
 require('./routes/index')(app);

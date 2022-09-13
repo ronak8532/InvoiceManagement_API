@@ -40,8 +40,6 @@ mongoose
     app.use(cors());
 
     app.use((req, res, next) => {
-        console.log(req);
-        console.log("res", res);
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader(
             "Access-Control-Allow-Headers",
@@ -59,6 +57,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to invoice application." });
 });
 
-require('./routes/index')(app);
+app.use("/", routes);
 
 

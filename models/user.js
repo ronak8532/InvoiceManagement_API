@@ -10,11 +10,16 @@ const returnFilter = (obj) => {
 }
 
 const userSchema = new Schema({
-	firstName: { type: String, required: true, unique: true },
-	lastName: { type: String, required: true, unique: true },
-	email: { type: String, required: true, unique: true },
+	firstName: { type: String, required: true },
+	lastName: { type: String, required: true },
+	email: { type: String },
 	password_hash: { type: String, required: true },
-  
+	address: { type: String },
+	phoneNumber: { type: String },
+	city: { type: String },
+	state: { type: String },
+	role: {type: String, required: true},
+	zipcode: {type: String}
   }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
   userSchema.methods.toJSON = function () {
@@ -25,9 +30,6 @@ const userSchema = new Schema({
 userSchema.statics.returnFilter = returnFilter
 userSchema.plugin(uniqueValidator);
 
-userSchema.index({ firstName: 1 });
-userSchema.index({ lastName: 1 });
 userSchema.index({ email: 1 });
-//userSchema.index({ password: 1 });
 
 module.exports = mongoose.model("User", userSchema);

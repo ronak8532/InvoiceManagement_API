@@ -19,7 +19,8 @@ const userSchema = new Schema({
 	city: { type: String },
 	state: { type: String },
 	role: {type: String, required: true},
-	zipcode: {type: String}
+	zipcode: {type: String},
+	gstin: {type: String}
   }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
   userSchema.methods.toJSON = function () {

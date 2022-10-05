@@ -166,7 +166,7 @@ exports.list = async(req, res, next) => {
         const { page = 1, limit = 10 } = req.query;
         const query = req.query;
         const sort_by = query.sort_by;
-        const sort_type = query.sort_type;
+        const sort_type = "desc";
         let filter_query = {  };
         
         let sort = {};

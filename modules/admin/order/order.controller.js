@@ -42,6 +42,7 @@ exports.placeOrder = async(req, res, next) => {
         order.total = body.total;
         order.roundoff = body.roundoff;
         order.grandtotal = body.grandtotal;
+        order.invoiceDate = body.invoiceDate || new Date();
         order.created_at = new Date();
         order.updated_at = new Date();
         order = await order.save();
@@ -86,6 +87,7 @@ exports.updateOrder = async(req, res, next) => {
             total: body.total,
             roundoff: body.roundoff,
             grandtotal: body.grandtotal,
+            invoiceDate:  body.invoiceDate || new Date();
             updated_at: new Date(),
         }
 
@@ -186,7 +188,7 @@ exports.list = async(req, res, next) => {
             };
         }
         const order = await Order.find({...filter_query, ...search_query })
-            .sort(sort)
+            .sort({'_id': -1})
             .limit(limit * 1)
             .skip((page - 1) * limit)
             .exec();

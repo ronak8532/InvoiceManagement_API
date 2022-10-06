@@ -20,6 +20,7 @@ const orderSchema = new Schema({
 	sgst: { type: String, required: true },
 	total: { type: String, required: true },
 	roundoff: { type: String },
+	invoiceDate: { type: String },
 	grandtotal: { type: String, required: true}
   }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 

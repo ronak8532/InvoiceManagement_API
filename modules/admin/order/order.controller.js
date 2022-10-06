@@ -87,7 +87,7 @@ exports.updateOrder = async(req, res, next) => {
             total: body.total,
             roundoff: body.roundoff,
             grandtotal: body.grandtotal,
-            invoiceDate:  body.invoiceDate || new Date();
+            invoiceDate:  body.invoiceDate || new Date(),
             updated_at: new Date(),
         }
 

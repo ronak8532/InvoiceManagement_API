@@ -22,18 +22,7 @@ exports.register = async(req, res, next) => {
         }
 
         const body = req.body;
-        const user_exists = await User.findOne({
-            $or: [
-                { email: body.email }
-            ]
-        });
         
-        if (user_exists) {
-            return res.status(200).json({
-                success: false,
-                error_message: "User already exists"
-            });
-        }
         const password_hash = bcrypt.hashSync(body.password, SALT_ROUNDS);
         let user = new User();
         user.firstName = body.firstName;

@@ -159,7 +159,7 @@ exports.list = async(req, res, next) => {
             };
         }
         const expense = await Expense.find({...filter_query, ...search_query })
-            .sort(sort)
+            .sort({'_id': -1})
             .limit(limit * 1)
             .skip((page - 1) * limit)
             .exec();

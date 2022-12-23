@@ -179,12 +179,13 @@ exports.list = async(req, res, next) => {
             sort[sort_by] = type;
         }
         let search_query = {};
-        if (query.query != undefined && query.query != "") {
+        if (query.fromDate != undefined || query.toDate != undefined) {
             search_query = {
-                $or: [
-                    { invoiceNo: { $regex: `${query.query}`, $options:"i" } },
-                    { status: { $regex: `${query.query}`, $options:"i" } }
-                ]
+                updated_at: {
+                    $gte: new Date(query.fromDate),
+                    $lte: new Date(query.toDate)
+                },
+                status: query.status
             };
         }
         const order = await Order.find({...filter_query, ...search_query })

@@ -151,11 +151,13 @@ exports.list = async(req, res, next) => {
             sort[sort_by] = type;
         }
         let search_query = {};
-        if (query.query != undefined && query.query != "") {
+        if ((query.fromDate != undefined && query.fromDate != "") && (query.toDate != undefined && query.toDate != "")) {
             search_query = {
-                $or: [
-                    { createdAt: { $regex: `${query.query}`, $options:"i" } }
-                ]
+                updated_at: {
+                    $gte: new Date(query.fromDate),
+                    $lte: new Date(query.toDate)
+                },
+                status: query.status
             };
         }
         const expense = await Expense.find({...filter_query, ...search_query })

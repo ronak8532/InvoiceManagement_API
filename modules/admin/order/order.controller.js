@@ -165,7 +165,7 @@ exports.findById = async(req, res, next) => {
 
 exports.list = async(req, res, next) => {
     try {
-        const { page = 1, limit = 10 } = req.query;
+        const { page = 1, limit = 100000000 } = req.query;
         const query = req.query;
         const sort_by = query.sort_by;
         const sort_type = "desc";
